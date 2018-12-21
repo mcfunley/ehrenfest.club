@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>Dan McKinley :: Ehrenfest&#39;s Urn</title>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <script type="text/javascript" src="processing.min.js"></script>
   <link rel="stylesheet" href="ehrenfest.css" type="text/css" media="screen" />
 </head>
@@ -10,33 +10,21 @@
     <h1>Ehrenfest&#39;s Urn</h1>
     <h3>An illustration of entropy&#39;s increase in the direction of time we call the future.</h3>
     <p>
-      This is a simulation of two gases mixing through a small opening between 
-      two boxes. Initially very low in entropy (that is, the two distinct gases 
+      This is a simulation of two gases mixing through a small opening between
+      two boxes. Initially very low in entropy (that is, the two distinct gases
       are separated), the system evolves to the higher entropy state in which the
-      gases are mixed. 
+      gases are mixed.
     </p>
     <p>
       Created by <a href="/">Dan McKinley</a>.
     </p>
     <p>
       <em>
-        Requires a browser that supports the &lt;canvas&gt; element, in 
+        Requires a browser that supports the &lt;canvas&gt; element, in
         other words, pretty much any browser except Internet Explorer.
       </em>
     </p>
   </div>
   <canvas id="animation" datasrc="ehrenfest.pjs" width="700" height="500"></canvas>
-
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-95652-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
 </body>
 </html>
