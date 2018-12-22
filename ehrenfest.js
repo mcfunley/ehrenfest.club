@@ -1,21 +1,27 @@
+var canvas;
+
+function scale_value(x) {
+  return x * canvas.width / 700;
+}
+
 function Urn() {
   this.top = 0;
   this.left = 0;
-  this.bottom = 500;
-  this.right = 700;
+  this.bottom = canvas.height;
+  this.right = canvas.width;
 
   this.mid_x = this.right / 2;
   this.mid_y = this.bottom / 2;
-  this.gap_width = 40;
 
-  this.top_gap = this.mid_y - (this.gap_width / 2);
-  this.bottom_gap = this.mid_y + (this.gap_width / 2);
+  var gap_width = scale_value(40);
+  this.top_gap = this.mid_y - (gap_width / 2);
+  this.bottom_gap = this.mid_y + (gap_width / 2);
 
   this.update = function() {
-    fill(150);
+    fill(0xff, 0xff, 0xff);
     stroke(0, 0, 0);
     strokeWeight(2);
-    rect(this.top, this.left, this.right, this.bottom);
+    //rect(this.top, this.left, this.right, this.bottom);
     line(this.mid_x, this.top, this.mid_x, this.top_gap);
     line(this.mid_x, this.bottom, this.mid_x, this.bottom_gap);
   };
@@ -23,7 +29,7 @@ function Urn() {
 }
 
 function random_velocity() {
-  return 5 - random(10);
+  return scale_value(5 - random(10));
 }
 
 function Particle(urn) {
@@ -90,20 +96,24 @@ function Particle(urn) {
     deflect_y();
   }
 
+  var size = scale_value(1.5);
+
   this.update = function() {
     fill(col);
     stroke(col);
-    ellipse(x_pos, y_pos, 1, 1);
+    ellipse(x_pos, y_pos, size, size);
     deflect();
   };
 }
 
 
 var particles = new Array(500);
-var urn = new Urn();
+var urn;
 
 function setup() {
-  createCanvas(700, 500);
+  canvas = createCanvas(window.innerWidth, window.innerHeight);
+  urn = new Urn();
+
   frameRate(15);
   for(var i = 0; i < particles.length; i++) {
     particles[i] = new Particle(urn);
@@ -112,9 +122,11 @@ function setup() {
 
 
 function draw() {
-  background(100);
+  background(255,255,255);
   urn.update();
   for(var i = 0; i < particles.length; i++) {
     particles[i].update();
   }
 }
+
+window.onresize = function() { setup(); };

@@ -62,13 +62,22 @@ body {
     background: #fff;
 }
 
+#explanation {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    max-width: 500px;
+    background: rgba(240, 248, 255, 0.8);
+    border: 1px solid #0192b5;
+    padding: 5px;
+}
+
 #explanation h1 {
     color: #D35701;
 }
 
 #explanation h1, #explanation h3, #explanation p {
     margin-bottom: 10px;
-    width: 900px;
 }
 
 a:link, a:visited, a:active, a:focus {
