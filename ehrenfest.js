@@ -43,20 +43,19 @@ function random_velocity() {
   return scale_value(5 - random(10));
 }
 
-function Particle(urn) {
+function Particle(urn, side) {
   var x_pos, y_pos, x_velocity, y_velocity, col;
 
-  // initially, give it a 50% chance of being on the left.
-  var min_x = urn.left,
-      side = random(100);
-
+  var min_x = urn.left;
   this.color = 'blue';
   col = BLUE;
-  if(side > 50) {
+
+  if(side == 'right') {
     this.color = 'red';
     col = RED;
     min_x = urn.mid_x;
   }
+
   x_pos = random(urn.mid_x) + min_x;
   y_pos = random(urn.bottom - urn.top);
   x_velocity = random_velocity();
@@ -125,7 +124,8 @@ function Particle(urn) {
 }
 
 
-var particles = new Array(500);
+var R = 250;
+var particles = new Array(2*R);
 var urn;
 
 function setup() {
@@ -142,8 +142,11 @@ function setup() {
   urn = new Urn();
 
   frameRate(15);
-  for(var i = 0; i < particles.length; i++) {
-    particles[i] = new Particle(urn);
+  for(var i = 0; i < R; i++) {
+    particles[i] = new Particle(urn, 'left');
+  }
+  for(i = R; i < 2*R; i++) {
+    particles[i] = new Particle(urn, 'right');
   }
 }
 
