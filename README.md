@@ -1,1 +1,1 @@
-See this live at [https://ehrenfest.club](ehrenfest.club).
+See this live at [ehrenfest.club](https://ehrenfest.club).
