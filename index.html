@@ -1,24 +1,46 @@
 <html>
-<head>
-  <title>Dan McKinley :: Ehrenfest&#39;s Urn</title>
-  <script type="text/javascript" src="p5.min.js"></script>
-  <link rel="stylesheet" href="ehrenfest.css" type="text/css" media="screen" />
-  <link rel="shortcut icon" href="favicon.png" />
+    <head>
+        <meta charset="utf-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, height=device-height, initial-scale=1" name="viewport">
+
+        <title>Dan McKinley :: Ehrenfest&#39;s Urn</title>
+        <script type="text/javascript" src="p5.min.js"></script>
+        <script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+        <link rel="stylesheet" href="ehrenfest.css" type="text/css" media="screen" />
+        <link rel="shortcut icon" href="favicon.png" />
 </head>
 <body>
-  <div id="explanation">
-    <h1>Ehrenfest&#39;s Urn</h1>
-    <h3>An illustration of entropy&#39;s increase in the direction of time we call the future.</h3>
-    <p>
-      This is a simulation of two gases mixing through a small opening between
-      two boxes. Initially very low in entropy (that is, the two distinct gases
-      are separated), the system evolves to the higher entropy state in which the
-      gases are mixed.
-    </p>
-    <p>
-      Created by <a href="/">Dan McKinley</a>.
-    </p>
-  </div>
-  <script src="ehrenfest.js"></script>
+    <header id="explanation">
+      <h1>Ehrenfest&#39;s Urn</h1>
+      <h3>An illustration of entropy&#39;s increase in the direction of time we call the future.</h3>
+      <p>
+          This is a simulation of two gases mixing through a small opening between
+          two boxes. Initially very low in entropy (that is, the two distinct gases
+          are separated), the system evolves to the higher entropy state in which the
+          gases are mixed.
+      </p>
+      <p>
+          Created by <a href="/">Dan McKinley</a>.
+      </p>
+    </header>
+
+    <div id="anim"></div>
+
+    <footer>
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet"
+           data-via="mcfunley"
+           data-size="large">
+            Tweet
+        </a>
+
+        <a class="twitter-follow-button" href="https://twitter.com/mcfunley"
+           data-show-count="false"
+           data-size="large">
+            Follow @mcfunley
+        </a>
+    </footer>
+
+    <script src="ehrenfest.js"></script>
 </body>
 </html>

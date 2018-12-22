@@ -111,7 +111,13 @@ var particles = new Array(500);
 var urn;
 
 function setup() {
-  canvas = createCanvas(window.innerWidth, window.innerHeight);
+  canvas = createCanvas(document.documentElement.offsetWidth, window.innerHeight);
+  canvas.parent('anim');
+
+  // if this caused vertical scroll (i.e. small screen) then the offsetWidth
+  // changed by virtue of adding the canvas.
+  resizeCanvas(document.documentElement.offsetWidth, window.innerHeight);
+
   urn = new Urn();
 
   frameRate(15);
@@ -122,6 +128,10 @@ function setup() {
 
 
 function draw() {
+  if(!urn) {
+    return;
+  }
+
   background(255,255,255);
   urn.update();
   for(var i = 0; i < particles.length; i++) {
