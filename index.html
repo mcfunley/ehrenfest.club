@@ -7,25 +7,48 @@
         <title>Dan McKinley :: Ehrenfest&#39;s Urn</title>
         <script type="text/javascript" src="p5.min.js"></script>
         <script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
         <link rel="stylesheet" href="ehrenfest.css" type="text/css" media="screen" />
         <link rel="shortcut icon" href="favicon.png" />
 </head>
 <body>
-    <header id="explanation">
+    <header>
       <h1>Ehrenfest&#39;s Urn</h1>
-      <h3>An illustration of entropy&#39;s increase in the direction of time we call the future.</h3>
-      <p>
-          This is a simulation of two gases mixing through a small opening between
-          two boxes. Initially very low in entropy (that is, the two distinct gases
-          are separated), the system evolves to the higher entropy state in which the
-          gases are mixed.
-      </p>
+      <h3>An illustration of entropy&#39;s increase in the direction of time we call &ldquo;the future&rdquo;.</h3>
+      <p id="explain-link"><a href="">More info &rarr;</a></p>
+      <div id="explanation">
+          <p>
+              This is a simulation of two gases mixing through a small opening between
+              two boxes. The initial conditions are low in entropy, in that the two gases
+              are separated. The system evolves to the higher entropy state in which the gases are mixed.
+          </p>
+          <p>
+              The motion of individual particles is reversible in time, but it is cosmically
+              unlikely that the system will spontaneously organize back into a low-entropy state.
+              This asymmetry gives time its arrow.
+          </p>
+          <p>
+              Inspired by <a href="https://amzn.to/2Sj1WDU">From Eternity to Here</a>.
+          </p>
+      </div>
       <p>
           <a class="club" href="http://dotclub.club">Back to the .club club</a>
       </p>
     </header>
 
-    <div id="anim"></div>
+    <div id="anim">
+        <div class="counters" id="lcounters">
+            <span class="redcount"></span><br />
+            <span class="bluecount"></span>
+        </div>
+        <div class="counters" id="rcounters">
+            <span class="redcount"></span><br />
+            <span class="bluecount"></span>
+        </div>
+    </div>
 
     <footer>
         <a class="twitter-share-button" href="https://twitter.com/intent/tweet"

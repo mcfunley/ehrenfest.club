@@ -1,8 +1,10 @@
 var canvas;
+var BLUE, RED;
 
 function scale_value(x) {
   return x * canvas.width / 700;
 }
+
 
 function Urn() {
   this.top = 0;
@@ -17,13 +19,22 @@ function Urn() {
   this.top_gap = this.mid_y - (gap_width / 2);
   this.bottom_gap = this.mid_y + (gap_width / 2);
 
-  this.update = function() {
+  var self = this;
+
+  function updateCounters(counters) {
+    $('#lcounters .redcount').text(counters['left']['red']);
+    $('#lcounters .bluecount').text(counters['left']['blue']);
+    $('#rcounters .redcount').text(counters['right']['red']);
+    $('#rcounters .bluecount').text(counters['right']['blue']);
+  }
+
+  this.update = function(counters) {
     fill(0xff, 0xff, 0xff);
     stroke(0, 0, 0);
     strokeWeight(2);
-    //rect(this.top, this.left, this.right, this.bottom);
     line(this.mid_x, this.top, this.mid_x, this.top_gap);
     line(this.mid_x, this.bottom, this.mid_x, this.bottom_gap);
+    updateCounters(counters);
   };
 
 }
@@ -35,13 +46,15 @@ function random_velocity() {
 function Particle(urn) {
   var x_pos, y_pos, x_velocity, y_velocity, col;
 
-  // initially, give it a 90% chance of being on the left.
+  // initially, give it a 50% chance of being on the left.
   var min_x = urn.left,
       side = random(100);
 
-  col = color(0, 121, 184);
-  if(side > 90) {
-    col = color(230, 80, 0);
+  this.color = 'blue';
+  col = BLUE;
+  if(side > 50) {
+    this.color = 'red';
+    col = RED;
     min_x = urn.mid_x;
   }
   x_pos = random(urn.mid_x) + min_x;
@@ -100,9 +113,14 @@ function Particle(urn) {
 
   this.update = function() {
     fill(col);
+    strokeWeight(2);
     stroke(col);
     ellipse(x_pos, y_pos, size, size);
     deflect();
+  };
+
+  this.get_side = function() {
+    return (x_pos > urn.mid_x) ? 'right' : 'left';
   };
 }
 
@@ -111,6 +129,9 @@ var particles = new Array(500);
 var urn;
 
 function setup() {
+  BLUE = color(0, 121, 184);
+  RED = color(230, 80, 0);
+
   canvas = createCanvas(document.documentElement.offsetWidth, window.innerHeight);
   canvas.parent('anim');
 
@@ -132,11 +153,38 @@ function draw() {
     return;
   }
 
+  var counters = {
+    left: {
+      blue: 0, red: 0
+    },
+    right: {
+      blue: 0, red: 0
+    }
+  };
+
   background(255,255,255);
-  urn.update();
   for(var i = 0; i < particles.length; i++) {
-    particles[i].update();
+    var p = particles[i];
+    p.update();
+    counters[p.get_side()][p.color] += 1;
   }
+
+  urn.update(counters);
 }
 
 window.onresize = function() { setup(); };
+
+if($('header').css('position') == 'absolute') {
+  var hide_explain = setTimeout(function() {
+    $('#explain-link').fadeIn();
+    $('#explanation').slideUp();
+  }, 4000);
+}
+
+$('#explain-link a').click(function(e) {
+  e.preventDefault();
+  $('#explanation').slideDown(function() {
+    $('#explain-link').slideUp(100);
+  });
+  return false;
+});
