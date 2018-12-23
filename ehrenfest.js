@@ -177,6 +177,7 @@ function draw() {
 
 window.onresize = function() { setup(); };
 
+/*
 if($('header').css('position') == 'absolute') {
   var hide_explain = setTimeout(function() {
     $('#explain-link').fadeIn();
@@ -191,3 +192,4 @@ $('#explain-link a').click(function(e) {
   });
   return false;
 });
+*/
