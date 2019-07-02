@@ -81,7 +81,6 @@ function Particle(urn, side) {
       if(y_pos < urn.top_gap || y_pos > urn.bottom_gap) {
         x_pos = urn.mid_x;
         x_velocity = -x_velocity;
-        return;
       }
 
     }
